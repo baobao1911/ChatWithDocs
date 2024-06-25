@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("nguyenbao19/face-anti")
+       app = docker.build("nguyenbao19/q_and_a_with_documents")
     }
 
     stage('Test image') {
