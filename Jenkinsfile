@@ -2,27 +2,21 @@ node {
     def app
 
     stage('Clone repository') {
-      
-
         checkout scm
     }
 
     stage('Build image') {
-  
-       app = docker.build("nguyenbao19/q_and_a_with_documents")
+       app = docker.build("nguyenbao19/mlops-project")
     }
-
+    
     stage('Test image') {
-  
-
         app.inside {
             sh 'echo "Tests passed"'
         }
     }
 
     stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
         }
     }
