@@ -1,28 +1,30 @@
-node {
-    def app
+pipeline {
+    agent any
 
-    stage('Clone repository') {
-        checkout scm
-    }
-
-    stage('Build image') {
-       app = docker.build("nguyenbao19/mlops-project")
-    }
-    
-    stage('Test image') {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+    options{
+        // Max number of build logs to keep and days to keep
+        buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
+        // Enable timestamp at each job in the pipeline
+        timestamps()
     }
 
-    stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("${env.BUILD_NUMBER}")
+    environment{
+        registry = 'nguyenbao19/chat-with-docs'
+        registryCredentialDockerhub = 'dockerhub_connection'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    echo 'Building image for deployment..'
+                    dockerImage = docker.build registry + ":0.0.$BUILD_NUMBER" 
+                    echo 'Pushing image to dockerhub..'
+                    docker.withRegistry( '', registryCredentialDockerhub ) {
+                        dockerImage.push()
+                        dockerImage.push('latest')
+                    }
+                }
+            }
         }
     }
-    
-    stage('Trigger ManifestUpdate') {
-                echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-        }
 }
