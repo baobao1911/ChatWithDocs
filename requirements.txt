@@ -1,7 +1,6 @@
 ctransformers
 transformers
 langchain
+huggingface_hub
 langchain-community
 fastapi
-uvicorn
-wget
