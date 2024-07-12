@@ -2,4 +2,5 @@ ctransformers
 langchain
 langchain-community
 fastapi
+uvicorn
 wget
