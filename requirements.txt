@@ -1,6 +1,5 @@
-ctransformers
-transformers
-langchain
-huggingface_hub
-langchain-community
 fastapi
+uvicorn
+langchain
+langchain_community
+huggingface_hub
