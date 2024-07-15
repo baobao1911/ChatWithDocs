@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     options {
-        // Maximum number of build logs to keep and days to keep
         buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
-        // Enable timestamp at each job in the pipeline
         timestamps()
     }
 
@@ -15,6 +13,14 @@ pipeline {
     }
     
     stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    echo 'Checking out latest code...'
+                    checkout scm
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
