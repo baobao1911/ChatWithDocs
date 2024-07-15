@@ -1,0 +1,14 @@
+apiVersion: v1
+name: logsmetrics
+description: Loki stack and Prometheus Grafana Helmchart
+
+type: application
+
+version: 0.0.1
+
+appVersion: "0.0.1"
+
+
+maintainers:
+- email: baonguyenthai580@gmail.com
+  name: ntbao
