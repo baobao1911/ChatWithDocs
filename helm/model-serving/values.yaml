@@ -1,0 +1,20 @@
+namespace: model-serving
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 30000
+
+image:
+  repository: nguyenbao19/chat-with-docs
+  tag: "0.40"
+  pullPolicy: Always
+
+imagePullSecrets: auth-registry
+
+ingress:
+  host: model-serving.mlops.vn
+  enabled: true
+  hosts:
+    - host: model-serving.mlops.vn
+      path: /

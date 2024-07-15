@@ -15,3 +15,6 @@ Follow the [Provision a GKE Cluster tutorial](https://developer.hashicorp.com/te
 ## Deploy and Access Kubernetes Dashboard
 
 Follow the official [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) documentation to deploy and access the Kubernetes Dashboard.
+
+
+Get secret user-admin script: kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d

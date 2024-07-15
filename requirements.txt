@@ -1,5 +1,11 @@
-fastapi
-uvicorn
+ctransformers
+transformers
 langchain
 langchain_community
-huggingface_hub
+torch
+pypdf
+gpt4all
+faiss-cpu
+wget
+fastapi
+uvicorn

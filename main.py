@@ -12,14 +12,16 @@ from langchain_community.embeddings import GPT4AllEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 
-from huggingface_hub import hf_hub_download
-
 import tempfile
+import wget
 
 app = FastAPI()
 
-model_file = "vinallama-2.7b-chat_q5_0.gguf"
-hf_hub_download(repo_id="bao1911/ChatWithDocs", filename=model_file)
+model_file = 'vinallama-2.7b-chat_q5_0.gguf'
+if not os.path.isfile(model_file):
+    url = 'https://huggingface.co/vilm/vinallama-2.7b-chat-GGUF/resolve/main/vinallama-2.7b-chat_q5_0.gguf?download=true'
+    wget.download(url, 'vinallama-2.7b-chat_q5_0.gguf')
+
 
 def load_llm(model_file):
     return CTransformers(
