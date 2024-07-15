@@ -10,6 +10,11 @@ image:
   tag: "0.40"
   pullPolicy: Always
 
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+
 imagePullSecrets: auth-registry
 
 ingress:
@@ -18,3 +23,8 @@ ingress:
   hosts:
     - host: model-serving.mlops.vn
       path: /
+
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
