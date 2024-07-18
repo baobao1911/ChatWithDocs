@@ -35,6 +35,26 @@ pipeline {
                 }
             }
         }
+        stage('Deploy application to k8s') {
+            agent {
+                kubernetes {
+                    containerTemplate {
+                        name 'helm' // Name of the container to be used for helm upgrade
+                        image 'nguyenbao19/jenkins:latest' // The image containing helm
+                        alwaysPullImage true // Always pull image in case of using the same tag
+                    }
+                }
+            }
+            steps {
+                script {
+                    container("helm") {
+                        echo "Ready to deploy ..."
+                        sh "helm upgrade --install model-release ./helm/model-serving --n model-serving"
+                        echo "Deploy successfully, ready to serve request ..."
+                    }
+                }
+            }
+        }
     }
 
     post {
