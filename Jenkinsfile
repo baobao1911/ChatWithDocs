@@ -49,7 +49,7 @@ pipeline {
                 script {
                     container("helm") {
                         echo "Ready to deploy ..."
-                        sh "helm upgrade --install model-release ./helm/model-serving --n model-serving"
+                        sh "helm upgrade --install model-release ./helm/model-serving --namespace model-serving"
                         echo "Deploy successfully, ready to serve request ..."
                     }
                 }
