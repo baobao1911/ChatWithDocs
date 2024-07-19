@@ -4,7 +4,6 @@ metadata:
   name: model-serving-pv-claim
   namespace: model-serving
 spec:
-  storageClassName: hostpath
   accessModes:
     - ReadWriteOnce
   resources:
