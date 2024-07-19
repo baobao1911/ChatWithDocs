@@ -23,7 +23,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: model-serving-storage
-              mountPath: /app/pod_storage
+              mountPath: "/app/pod_storage"
           resources:
             requests:
               memory: {{ .Values.resources.requests.memory }}
@@ -31,7 +31,7 @@ spec:
       volumes:
         - name: model-serving-storage
           persistentVolumeClaim:
-            claimName: /app/pod_storage
+            claimName: model-serving-pv-claim
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
 
