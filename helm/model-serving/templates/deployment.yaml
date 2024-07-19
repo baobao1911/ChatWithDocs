@@ -21,10 +21,17 @@ spec:
           ports:
             - containerPort: {{ .Values.service.port }}
               protocol: TCP
+          volumeMounts:
+            - name: model-serving-storage
+              mountPath: /app/pod_storage
           resources:
             requests:
               memory: {{ .Values.resources.requests.memory }}
               cpu: {{ .Values.resources.requests.cpu }}
+      volumes:
+        - name: model-serving-storage
+          persistentVolumeClaim:
+            claimName: /app/pod_storage
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
 
