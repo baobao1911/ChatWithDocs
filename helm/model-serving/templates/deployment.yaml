@@ -31,7 +31,7 @@ spec:
       volumes:
         - name: model-serving-storage
           persistentVolumeClaim:
-            claimName: model-serving-pv-claim
+            claimName: model-serving-pvc
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
 
