@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: model-serving-pv-claim
+  name: model-serving-pvc
   namespace: model-serving
 spec:
   accessModes:
