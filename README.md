@@ -7,6 +7,8 @@
 
 ## Continuous Integration and Continuous Deployment (CI/CD)
 ### API 
+![image](https://github.com/user-attachments/assets/604329a1-e754-4880-950c-1f9ab989cf38)
+
 ![api](https://github.com/user-attachments/assets/327b96ef-9b1d-4e05-a4a2-49817d489152)
 
 ### Jenkins Pipeline
